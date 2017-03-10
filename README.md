@@ -1,3 +1,3 @@
-# TPB Search for iOS
+# TPB Search
 
-An app definitely *not* for searching the pirate bay then sending your downloads to a server that you computer can check every 30 minutes to see if there's anything new.
+A React Native app (iOS Only for now) for not searching TPB  and definitely not for adding downloads rot a queue on  a server somewhere that your computer can’t monitor for new not torrents to not download.
