@@ -35,7 +35,7 @@ export default class Search extends Component {
     });
 
 
-    this.refs.searchBar.unFocus;
+    this.refs.searchBar.unFocus();
   };
 
   componentDidMount() {
@@ -54,6 +54,7 @@ export default class Search extends Component {
               placeholder='Search'
               onChangeText={(search) => this.setState({search})}
               onSearchButtonPress={this.performSearch.bind(this)}
+              showsCancelButton={true}
               />
 
           <MediaList list={this.state.list} category={this.props.category}/>
