@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
     SegmentedControlIOS,
-    Image,
     View
 } from 'react-native';
 
@@ -51,7 +47,6 @@ export default class Top extends Component {
     });
 
     this.getTop( category );
-
   }
 
   render() {

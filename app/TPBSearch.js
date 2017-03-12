@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TabBarIOS
 } from 'react-native';
@@ -26,7 +25,6 @@ class TPBSearch extends Component{
   }
 
   setLoading( status ) {
-    console.log( 'Doing this', status );
     this.setState({
       loading: status
     });

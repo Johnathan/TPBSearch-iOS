@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    ListView,
-    TouchableHighlight,
-    Image
+    View
 } from 'react-native';
 
 import NavigationBar from 'react-native-navbar';
@@ -44,7 +38,7 @@ export default class Search extends Component {
 
   componentDidMount() {
     // Automatically Focus Search Field
-    // this.refs.searchBar.focus();
+    this.refs.searchBar.focus();
   }
 
   render() {
@@ -59,7 +53,7 @@ export default class Search extends Component {
               onChangeText={(search) => this.setState({search})}
               onSearchButtonPress={this.performSearch.bind(this)}
               showsCancelButton={true}
-              />
+          />
 
           <MediaList list={this.state.list} category={this.props.category}/>
       </View>

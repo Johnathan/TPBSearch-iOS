@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
     Text,
     ListView,
     TouchableHighlight,
-    Image,
     View
 } from 'react-native';
 
@@ -32,38 +30,37 @@ class MediaList extends Component {
   }
 
   renderTitle( title ) {
-    var parsedTitle = tnp( title );
+    const parsedTitle = tnp( title );
 
-    var title = '';
+    // See if we can return a prettier version of the title
+    // tv - season number, episode number
+    // movie - year
+    let prettyTitle = '';
 
-    if( ['tvshows'].indexOf( this.props.category ) > -1 )
-    {
-      title = parsedTitle.title;
+    switch ( this.props.category ) {
+      case 'tvshows':
+        prettyTitle = parsedTitle.title;
 
-      if( typeof parsedTitle.season != 'undefined' ) title += ' Season ' + parsedTitle.season;
-      if( typeof parsedTitle.episode != 'undefined' ) title += ' Episode ' + parsedTitle.episode;
+        if( typeof parsedTitle.season != 'undefined' ) prettyTitle += ' Season ' + parsedTitle.season;
+        if( typeof parsedTitle.episode != 'undefined' ) prettyTitle += ' Episode ' + parsedTitle.episode;
+        break;
+      case 'movies':
+        prettyTitle = parsedTitle.title;
+        if( typeof parsedTitle.year != 'undefined' ) prettyTitle += ' (' + parsedTitle.year + ')';
+      break;
     }
 
-    if( ['movies'].indexOf( this.props.category ) > -1 )
-    {
-      title = parsedTitle.title;
-
-      if( typeof parsedTitle.year != 'undefined' ) title += ' (' + parsedTitle.year + ')';
-    }
-
-    return title;
+    return prettyTitle;
   }
 
   downloadTorrent( magnet ) {
+
+    // Send the magnet link to the "queue" server
     fetch('https://tpbsearch.1707.pro', {
       method: 'POST',
       body: JSON.stringify({
         magnet: magnet
       })
-    }).then(function( response ){
-      console.log( response );
-    }).catch(function( error ){
-      console.log( error );
     });
   }
 
