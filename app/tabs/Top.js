@@ -18,7 +18,6 @@ export default class Top extends Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
       list: [],
       category: 'tvshows'
@@ -30,23 +29,28 @@ export default class Top extends Component {
   }
 
   getTop( category ) {
-    var self = this;
+    const self = this;
+
+    this.props.setLoading( true );
 
     piratebay.top( piratebay.categories.video[category] ).then(function( results ){
       self.setState({
         list: results.length ? results : []
       });
+
+      self.props.setLoading( false );
     });
   }
 
   updateCategory( event ) {
-    var categories = ['tvshows', 'movies'];
+    const categories = ['tvshows', 'movies'];
+    const category = categories[event.nativeEvent.selectedSegmentIndex];
 
     this.setState({
-      category: categories[event.nativeEvent.selectedSegmentIndex]
+      category
     });
 
-    this.getTop( categories[event.nativeEvent.selectedSegmentIndex] );
+    this.getTop( category );
 
   }
 

@@ -28,10 +28,14 @@ export default class Search extends Component {
   performSearch() {
     var self = this;
 
+    this.props.setLoading( true );
+
     piratebay.search( piratebay.categories.video[this.props.category], this.state.search ).then(function( results ){
       self.setState({
         list: results.length ? results : []
       });
+
+      self.props.setLoading( false );
     });
 
 
